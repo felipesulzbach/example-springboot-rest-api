@@ -1,6 +1,7 @@
 package br.com.restapi.exemplorestapi.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USUARIO")
-public class Usuario implements Serializable {
+@Table(name = "CURSO")
+public class Curso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +23,11 @@ public class Usuario implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name = "SENHA")
-	private String senha;
+	@Column(name = "DESCRICAO")
+	private String descricao;
+
+	@Column(name = "DATA_CADASTRO")
+	private LocalDateTime dataCadastro;
 
 	public Long getId() {
 		return id;
@@ -41,12 +45,20 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	@Override
@@ -54,6 +66,7 @@ public class Usuario implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -65,11 +78,16 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Curso other = (Curso) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
@@ -83,9 +101,35 @@ public class Usuario implements Serializable {
 		strb.append(getId());
 		strb.append(", NOME: ");
 		strb.append(getNome());
-		strb.append(", SENHA: ");
-		strb.append(getSenha());
+		strb.append(", DESCRICAO: ");
+		strb.append(getDescricao());
+		strb.append(", DATACADASTRO: ");
+		strb.append(getDataCadastro());
 		strb.append("]");
 		return strb.toString();
+	}
+
+	public static synchronized Curso create() {
+		return new Curso();
+	}
+
+	public Curso withId(final Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public Curso withNome(final String nome) {
+		this.nome = nome;
+		return this;
+	}
+
+	public Curso withDescricao(final String descricao) {
+		this.descricao = descricao;
+		return this;
+	}
+
+	public Curso withDataCadastro(final LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+		return this;
 	}
 }

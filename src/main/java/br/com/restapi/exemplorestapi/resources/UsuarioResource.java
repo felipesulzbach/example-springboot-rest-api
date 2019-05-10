@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 public class UsuarioResource {
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	@ApiOperation(value = "Retorna uma lista de Usuarios")
 	@GetMapping(value = "/usuario")
@@ -37,23 +37,23 @@ public class UsuarioResource {
 	@ApiOperation(value = "Retorna um Usuario específico")
 	@GetMapping(value = "/usuario/{id}")
 	public Usuario buscarUsuario(@PathVariable(value = "id") long id) {
-		return usuarioRepository.findById(id);
+		return usuarioRepository.findById(id).get();
 	}
 
 	@ApiOperation(value = "Insere um Usuario específico")
-	@PostMapping(value = "/usuario/insere")
+	@PostMapping(value = "/usuario")
 	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 
 	@ApiOperation(value = "Remove um Usuario específico")
-	@DeleteMapping(value = "/usuario/remove")
+	@DeleteMapping(value = "/usuario")
 	public void removerUsuario(@RequestBody Usuario usuario) {
 		usuarioRepository.delete(usuario);
 	}
 
 	@ApiOperation(value = "Atualiza um Usuario específico")
-	@PutMapping(value = "/usuario/atualiza")
+	@PutMapping(value = "/usuario")
 	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}

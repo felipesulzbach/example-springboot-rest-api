@@ -28,7 +28,7 @@ public class SweggerConfig {
 
 	private ApiInfo metaInfo() {
 		ApiInfo apiInfo = new ApiInfo("API REST com Swagger", "Exemplo de uma API REST com Swagger", "1.0",
-				"Terms of Service",
+				"Termos de Serviço",
 				new Contact("Felipe Sulzbach", "https://www.linkedin.com/in/felipe-sulzbach-8a2537a9/", "feliperpdr@yahoo.com.br"),
 				"Apache License Version 2.0", "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>());
 		return apiInfo;
