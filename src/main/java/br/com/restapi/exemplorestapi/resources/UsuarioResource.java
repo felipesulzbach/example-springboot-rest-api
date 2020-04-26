@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.restapi.exemplorestapi.models.Usuario;
+import br.com.restapi.exemplorestapi.models.User;
 import br.com.restapi.exemplorestapi.repository.UsuarioRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,31 +30,31 @@ public class UsuarioResource {
 
 	@ApiOperation(value = "Retorna uma lista de Usuarios")
 	@GetMapping(value = "/usuario")
-	public List<Usuario> listarUsuario() {
+	public List<User> listarUsuario() {
 		return usuarioRepository.findAll();
 	}
 
 	@ApiOperation(value = "Retorna um Usuario específico")
 	@GetMapping(value = "/usuario/{id}")
-	public Usuario buscarUsuario(@PathVariable(value = "id") long id) {
+	public User buscarUsuario(@PathVariable(value = "id") long id) {
 		return usuarioRepository.findById(id).get();
 	}
 
 	@ApiOperation(value = "Insere um Usuario específico")
 	@PostMapping(value = "/usuario")
-	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
+	public User salvarUsuario(@RequestBody User usuario) {
 		return usuarioRepository.save(usuario);
 	}
 
 	@ApiOperation(value = "Remove um Usuario específico")
 	@DeleteMapping(value = "/usuario")
-	public void removerUsuario(@RequestBody Usuario usuario) {
+	public void removerUsuario(@RequestBody User usuario) {
 		usuarioRepository.delete(usuario);
 	}
 
 	@ApiOperation(value = "Atualiza um Usuario específico")
 	@PutMapping(value = "/usuario")
-	public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
+	public User atualizarUsuario(@RequestBody User usuario) {
 		return usuarioRepository.save(usuario);
 	}
 }
