@@ -14,6 +14,9 @@ import javax.persistence.Table;
 
 import br.com.restapi.exemplorestapi.models.enumeration.EnumAccessPermission;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Entity
 @Table(name = "PROFILE")
 public class Profile implements Serializable {

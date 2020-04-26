@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Entity
 @Table(name = "COURSE")
 public class Course implements Serializable {

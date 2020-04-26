@@ -4,5 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.restapi.exemplorestapi.models.User;
 
-public interface UsuarioRepository extends JpaRepository<User, Long> {
+/**
+ * @autor: Felipe Sulzbach
+ */
+public interface UserRepository extends JpaRepository<User, Long> {
 }

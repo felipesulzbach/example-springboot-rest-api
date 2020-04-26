@@ -4,25 +4,32 @@ import java.text.ParseException;
 
 import javax.swing.text.MaskFormatter;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class FormatUtil {
 
-	public static enum Mascara {
-		CPF("###.###.###-##"), CNPJ("##.###.###/####-##");
+    public static enum Mask {
+        CPF(
+                "###.###.###-##"
+        ), CNPJ(
+                "##.###.###/####-##"
+        );
 
-		private String mascara;
+        private String mask;
 
-		Mascara(String mascara) {
-			this.mascara = mascara;
-		}
+        Mask(String mask) {
+            this.mask = mask;
+        }
 
-		public String getMascara() {
-			return mascara;
-		}
-	}
+        public String getMask() {
+            return mask;
+        }
+    }
 
-	public static String formatNumber(String value, Mascara mascara) throws ParseException {
-		MaskFormatter mask = new MaskFormatter(mascara.getMascara());
-		mask.setValueContainsLiteralCharacters(false);
-		return mask.valueToString(value);
-	}
+    public static String formatNumber(String value, Mask mask) throws ParseException {
+        MaskFormatter maskk = new MaskFormatter(mask.getMask());
+        maskk.setValueContainsLiteralCharacters(false);
+        return maskk.valueToString(value);
+    }
 }

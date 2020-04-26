@@ -9,24 +9,27 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 public class Message {
 
-	@Autowired
-	private MessageSource source;
+    @Autowired
+    private MessageSource source;
 
-	private MessageSourceAccessor acessor;
+    private MessageSourceAccessor acessor;
 
-	@PostConstruct
-	private void init() {
-		this.acessor = new MessageSourceAccessor(this.source, Locale.getDefault());
-	}
+    @PostConstruct
+    private void init() {
+        this.acessor = new MessageSourceAccessor(this.source, Locale.getDefault());
+    }
 
-	public String get(String codMessage) {
-		return this.acessor.getMessage(codMessage);
-	}
+    public String get(String codMessage) {
+        return this.acessor.getMessage(codMessage);
+    }
 
-	public String get(String codMessage, Object... params) {
-		return this.acessor.getMessage(codMessage, params);
-	}
+    public String get(String codMessage, Object... params) {
+        return this.acessor.getMessage(codMessage, params);
+    }
 }

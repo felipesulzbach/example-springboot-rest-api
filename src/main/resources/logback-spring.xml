@@ -7,7 +7,7 @@
 
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/data/logs/app/exemplo.%d.log.zip
+			<fileNamePattern>/data/logs/app/exemplorestapi/springboot.%d.log.zip
 			</fileNamePattern>
 			<maxHistory>10</maxHistory>
 		</rollingPolicy>
@@ -27,5 +27,4 @@
 	<root level="INFO">
 		<appender-ref ref="msGetConfigLog" />
 	</root>
-
 </configuration>

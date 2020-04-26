@@ -12,6 +12,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Entity
 @Table(name = "PERSON")
 public class Person implements Serializable {

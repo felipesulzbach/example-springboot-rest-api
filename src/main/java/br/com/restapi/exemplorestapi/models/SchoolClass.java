@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Entity
 @Table(name = "SCHOOL_CLASS")
 public class SchoolClass implements Serializable {

@@ -21,7 +21,7 @@ import br.com.restapi.exemplorestapi.models.User;
 public class UsuarioRepositoryTest {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UserRepository repository;
 
 	@Test
 	public void testarFindByEstabelecimento() throws Exception {

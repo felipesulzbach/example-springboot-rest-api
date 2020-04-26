@@ -1,5 +1,8 @@
 package br.com.restapi.exemplorestapi.models.enumeration;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public enum EnumAccessPermission {
 
     NO_ACCESS(

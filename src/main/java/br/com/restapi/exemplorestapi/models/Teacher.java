@@ -8,6 +8,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Entity
 @Table(name = "TEACHER")
 @PrimaryKeyJoinColumn(name = "PERSON_ID", referencedColumnName = "ID")
