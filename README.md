@@ -29,5 +29,5 @@ Nesse projeto de exemplo, a estrutura foi criada a partir do **Springboot Initia
 
 Para documentar os serviços REST, foi utilizada a ferramenta Swagger UI.
 
-Tela do Swagger UI
+Tela do Swagger UI (http://localhost:8001/swagger-ui.html)
 ![Tela do Swagger UI](https://github.com/felipesulzbach/exemplo-springboot-rest-swagger/blob/master/img/visao-swagger.png)
