@@ -17,10 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Proxy;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * @autor: Felipe Sulzbach
  */
@@ -28,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(schema = "FS_AUTO", name = "APP_USER",
        indexes = { @Index(name = "IDX_APP_USER_PROFILE", columnList = "PROFILE_ID"),
                @Index(name = "IDX_APP_USER_PERSON", columnList = "PERSON_ID") })
-@Proxy(lazy = false)
 public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,15 +47,12 @@ public class AppUser implements Serializable {
     @JoinColumn(name = "PROFILE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_APP_USER_PROFILE"))
     private Profile profile;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "START_DATE")
     private LocalDateTime startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "END_DATE")
     private LocalDateTime endDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "REGISTRATION_DATE")
     private LocalDateTime registrationDate;
 

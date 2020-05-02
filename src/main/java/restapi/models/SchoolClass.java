@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * @autor: Felipe Sulzbach
  */
@@ -37,15 +35,12 @@ public class SchoolClass implements Serializable {
     @JoinColumn(name = "COURSE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_SCHOOL_CLASS_COURSE"))
     private Course course;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "START_DATE")
     private LocalDateTime startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "END_DATE")
     private LocalDateTime endDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "REGISTRATION_DATE")
     private LocalDateTime registrationDate;
 

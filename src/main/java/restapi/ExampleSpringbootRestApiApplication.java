@@ -12,6 +12,7 @@ public class ExampleSpringbootRestApiApplication {
 
     public static void main(String[] args) {
         try {
+            System.setProperty("server.servlet.context-path", "/api");
             SpringApplication.run(ExampleSpringbootRestApiApplication.class, args);
         } catch (Throwable e) {
             if (e.getClass().getName().contains("SilentExitException")) {

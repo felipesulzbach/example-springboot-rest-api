@@ -50,10 +50,10 @@ ALTER TABLE fs_auto.school_class ALTER COLUMN id SET DEFAULT NEXTVAL('fs_auto.sc
 
 ---------- STUDENT ----------
 CREATE TABLE fs_auto.student
-(person_id NUMERIC NOT NULL
-,school_class_id NUMERIC NOT NULL
-,CONSTRAINT pk_student PRIMARY KEY (person_id, school_class_id)
-,CONSTRAINT fk_student_person FOREIGN KEY (person_id) REFERENCES fs_auto.person (id)
+(id NUMERIC NOT NULL
+,school_class_id NUMERIC
+,CONSTRAINT pk_student PRIMARY KEY (id)
+,CONSTRAINT fk_student_person FOREIGN KEY (id) REFERENCES fs_auto.person (id)
 ,CONSTRAINT fk_student_school_class FOREIGN KEY (school_class_id) REFERENCES fs_auto.school_class (id));
 
 CREATE INDEX idx_student_school_class ON fs_auto.student(school_class_id);
@@ -61,10 +61,10 @@ CREATE INDEX idx_student_school_class ON fs_auto.student(school_class_id);
 
 ---------- TEACHER ----------
 CREATE TABLE fs_auto.teacher
-(person_id NUMERIC NOT NULL
-,course_id NUMERIC NOT NULL
-,CONSTRAINT pk_teacher PRIMARY KEY (person_id, course_id)
-,CONSTRAINT fk_teacher_person FOREIGN KEY (person_id) REFERENCES fs_auto.person (id)
+(id NUMERIC NOT NULL
+,course_id NUMERIC
+,CONSTRAINT pk_teacher PRIMARY KEY (id)
+,CONSTRAINT fk_teacher_person FOREIGN KEY (id) REFERENCES fs_auto.person (id)
 ,CONSTRAINT fk_teacher_course FOREIGN KEY (course_id) REFERENCES fs_auto.course (id));
 
 CREATE INDEX idx_teacher_course ON fs_auto.teacher(course_id);

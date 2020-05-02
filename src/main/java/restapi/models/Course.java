@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * @autor: Felipe Sulzbach
  */
@@ -33,7 +31,6 @@ public class Course implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "REGISTRATION_DATE")
     private LocalDateTime registrationDate;
 

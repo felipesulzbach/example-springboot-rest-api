@@ -11,6 +11,8 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -19,16 +21,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Proxy;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * @autor: Felipe Sulzbach
  */
 @Entity
 @Table(schema = "FS_AUTO", name = "PERSON")
-@Proxy(lazy = false)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,7 +55,6 @@ public class Person implements Serializable {
     @Column(name = "ADDRESS")
     private String address;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "REGISTRATION_DATE")
     private LocalDateTime registrationDate;
 

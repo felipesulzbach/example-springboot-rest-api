@@ -23,7 +23,7 @@ public class Student extends Person {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "SCHOOL_CLASS_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_STUDENT_SCHOOL_CLASS"))
+    @JoinColumn(name = "SCHOOL_CLASS_ID", nullable = true, foreignKey = @ForeignKey(name = "FK_STUDENT_SCHOOL_CLASS"))
     private SchoolClass schoolClass;
 
     public SchoolClass getSchoolClass() {

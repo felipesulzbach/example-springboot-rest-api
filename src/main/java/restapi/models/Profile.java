@@ -19,8 +19,6 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Proxy;
-
 import restapi.models.enumeration.EnumAccessPermission;
 
 /**
@@ -28,7 +26,6 @@ import restapi.models.enumeration.EnumAccessPermission;
  */
 @Entity
 @Table(schema = "FS_AUTO", name = "PROFILE")
-@Proxy(lazy = false)
 public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
