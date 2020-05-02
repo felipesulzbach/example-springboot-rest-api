@@ -17,7 +17,7 @@ public class ExceptionUtil {
     public static final String STATUS = ".stt";
     public static final String DEV_MESSAGE = ".dev";
     public static final String USER_MESSAGE = ".msg";
-    public static final String MORE_INFO = "https://github.com/felipesulzbach/exemplo-springboot-rest-swagger/blob/master/README.md";
+    public static final String MORE_INFO = "https://github.com/felipesulzbach/example-springboot-rest-api/blob/master/README.md";
 
     public static String getParameterNames(MethodArgumentNotValidException ex) {
         StringBuilder paramNames = new StringBuilder();

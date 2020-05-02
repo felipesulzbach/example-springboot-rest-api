@@ -2,6 +2,8 @@ package restapi.models.resources;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class PersonResp {
 
     private Long id;
@@ -11,6 +13,7 @@ public class PersonResp {
     private String city;
     private String zipCode;
     private String address;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registrationDate;
 
     public Long getId() {

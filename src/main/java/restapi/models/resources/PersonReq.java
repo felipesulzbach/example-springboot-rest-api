@@ -1,9 +1,6 @@
 package restapi.models.resources;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,9 +29,6 @@ public class PersonReq {
     @NotBlank
     @JsonProperty("address")
     private String address;
-    @NotNull
-    @JsonProperty("registrationDate")
-    private LocalDateTime registrationDate;
 
     public String getName() {
         return name;
@@ -82,13 +76,5 @@ public class PersonReq {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
     }
 }

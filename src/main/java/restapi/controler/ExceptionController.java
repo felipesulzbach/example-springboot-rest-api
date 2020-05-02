@@ -107,15 +107,14 @@ public class ExceptionController {
     @ExceptionHandler(value = { HttpMessageNotReadableException.class })
     public ResponseEntity<ErrorResponse> httpMessageNotReadableException(HttpMessageNotReadableException e) {
         InvalidFormatException ex = (InvalidFormatException) e.getCause();
-        if (ex.getTargetType().isEnum()) {
+        if (ex != null && ex.getTargetType().isEnum()) {
             String[] params = { ex.getValue().toString(), getEnumNames((Class<? extends Enum<?>>) ex.getTargetType()) };
             return loadResponseEntity("PARAMETER_NOT_FOUND", e, WARN, (Object[]) params);
         } else {
             log.warn(e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(ErrorResponse.create().withStatus(HttpStatus.BAD_REQUEST)
-                            .withDeveloperMessage(ex.getOriginalMessage()).withUserMessage(ex.getOriginalMessage())
-                            .withErrorCode("").withMoreInfo(MORE_INFO));
+                    .body(ErrorResponse.create().withStatus(HttpStatus.BAD_REQUEST).withDeveloperMessage(e.getMessage())
+                            .withUserMessage(e.getMessage()).withErrorCode("").withMoreInfo(MORE_INFO));
         }
     }
 
