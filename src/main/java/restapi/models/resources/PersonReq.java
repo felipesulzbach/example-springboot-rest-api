@@ -11,11 +11,11 @@ public class PersonReq {
 
     @NotBlank
     @JsonProperty("name")
-    @Size(min = 5, max = 20)
+    @Size(min = 5, max = 50)
     private String name;
     @NotBlank
     @JsonProperty("cpf")
-    @Size(min = 6, max = 10)
+    @Size(min = 6, max = 11)
     private String cpf;
     @NotBlank
     @JsonProperty("cellPhone")
@@ -76,5 +76,60 @@ public class PersonReq {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder strb = new StringBuilder();
+        strb.append(getClass().getSimpleName());
+        strb.append(" [");
+        strb.append(", NAME: ");
+        strb.append(getName());
+        strb.append(", CPF: ");
+        strb.append(getCpf());
+        strb.append(", CELL_PHONE: ");
+        strb.append(getCellPhone());
+        strb.append(", CITY: ");
+        strb.append(getCity());
+        strb.append(", ZIP_CODE: ");
+        strb.append(getZipCode());
+        strb.append(", ADDRESS: ");
+        strb.append(getAddress());
+        strb.append("]");
+        return strb.toString();
+    }
+
+    public static synchronized PersonReq create() {
+        return new PersonReq();
+    }
+
+    public PersonReq withName(final String name) {
+        this.name = name;
+        return this;
+    }
+
+    public PersonReq withCpf(final String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
+    public PersonReq withCellPhone(final String cellPhone) {
+        this.cellPhone = cellPhone;
+        return this;
+    }
+
+    public PersonReq withCity(final String city) {
+        this.city = city;
+        return this;
+    }
+
+    public PersonReq withZipCode(final String zipCode) {
+        this.zipCode = zipCode;
+        return this;
+    }
+
+    public PersonReq withAddress(final String address) {
+        this.address = address;
+        return this;
     }
 }

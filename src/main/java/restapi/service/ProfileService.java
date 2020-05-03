@@ -48,16 +48,14 @@ public class ProfileService {
     }
 
     public ProfileResp create(ProfileReq req) throws ServiceException {
-        Profile entityCreated = repository.save(Profile.create().withName(req.getName()).withCode(req.getCode())
-                .withAccessPermission(req.getAccessPermission()));
+        Profile entityCreated = repository.save(Profile.valueOf(Profile.create(), req));
         ProfileResp response = ProfileRespTrans.create().toTransform(entityCreated);
         return response;
     }
 
     public ProfileResp update(Long id, ProfileReq req) throws ServiceException {
         Profile entity = getProfile(id);
-        Profile entityUpdated = repository.save(
-                entity.withName(req.getName()).withCode(req.getCode()).withAccessPermission(req.getAccessPermission()));
+        Profile entityUpdated = repository.save(Profile.valueOf(entity, req));
         ProfileResp response = ProfileRespTrans.create().toTransform(entityUpdated);
         return response;
     }

@@ -37,14 +37,14 @@ import restapi.util.ServiceException;
 public class AppUserControler {
 
     @Autowired
-    private AppUserService appUserService;
+    private AppUserService service;
 
     @ApiOperation(value = "Returns a list of Users.", notes = "${AppUserControler.getAll}")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Users found."),
             @ApiResponse(code = 404, message = "No users found.", response = ErrorResponse.class) })
     @GetMapping(value = "/user")
     public ResponseEntity<List<AppUserResp>> getAll() {
-        List<AppUserResp> response = appUserService.getAll();
+        List<AppUserResp> response = service.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -53,7 +53,7 @@ public class AppUserControler {
             @ApiResponse(code = 404, message = "User not found.", response = ErrorResponse.class) })
     @GetMapping(value = "/user/{id}")
     public ResponseEntity<AppUserResp> getById(@NotNull @PathVariable(value = "id") long id) throws ServiceException {
-        AppUserResp response = appUserService.getById(id);
+        AppUserResp response = service.getById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -63,7 +63,7 @@ public class AppUserControler {
     @PostMapping(value = "/user")
     public ResponseEntity<AppUserResp> create(@Validated @NotNull @RequestBody AppUserReq userReq)
             throws ServiceException {
-        AppUserResp response = appUserService.create(userReq);
+        AppUserResp response = service.create(userReq);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -74,7 +74,7 @@ public class AppUserControler {
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<AppUserResp> update(@NotNull @PathVariable(value = "id") long id,
             @Validated @RequestBody AppUserReq userReq) throws ServiceException {
-        AppUserResp response = appUserService.update(id, userReq);
+        AppUserResp response = service.update(id, userReq);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -83,6 +83,6 @@ public class AppUserControler {
             @ApiResponse(code = 404, message = "User not found.", response = ErrorResponse.class) })
     @DeleteMapping(value = "/user/{id}")
     public void remove(@NotNull @PathVariable(value = "id") long id) throws ServiceException {
-        appUserService.remove(id);
+        service.remove(id);
     }
 }

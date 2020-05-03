@@ -9,7 +9,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class FormatUtil {
 
-    public static enum Mask {
+    public static enum EnumMask {
         CPF(
                 "###.###.###-##"
         ), CNPJ(
@@ -18,7 +18,7 @@ public class FormatUtil {
 
         private String mask;
 
-        Mask(String mask) {
+        EnumMask(String mask) {
             this.mask = mask;
         }
 
@@ -27,7 +27,7 @@ public class FormatUtil {
         }
     }
 
-    public static String formatNumber(String value, Mask mask) throws ParseException {
+    public static String formatNumber(String value, EnumMask mask) throws ParseException {
         MaskFormatter maskk = new MaskFormatter(mask.getMask());
         maskk.setValueContainsLiteralCharacters(false);
         return maskk.valueToString(value);

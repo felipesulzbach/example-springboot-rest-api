@@ -24,7 +24,7 @@ public class PersonTrans implements Transformer<PersonResp, Person> {
             return null;
         }
 
-        return Person.create().withId(in.getId()).withName(in.getName()).withName(in.getName()).withCpf(in.getCpf())
+        return Person.create().withId(in.getId()).withName(in.getName()).withCpf(in.getCpf())
                 .withCellPhone(in.getCellPhone()).withCity(in.getCity()).withZipCode(in.getZipCode())
                 .withAddress(in.getAddress()).withRegistrationDate(in.getRegistrationDate());
     }

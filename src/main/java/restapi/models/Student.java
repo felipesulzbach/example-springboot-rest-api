@@ -1,5 +1,7 @@
 package restapi.models;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Index;
@@ -9,6 +11,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
+
+import restapi.models.resources.StudentReq;
 
 /**
  * @autor: Felipe Sulzbach
@@ -34,13 +38,18 @@ public class Student extends Person {
         this.schoolClass = schoolClass;
     }
 
+    public static Student valueOf(Student entity, StudentReq req, SchoolClass schoolClass) {
+        return entity.withSchoolClass(schoolClass).withName(req.getName()).withCpf(req.getCpf())
+                .withCellPhone(req.getCellPhone()).withCity(req.getCity()).withZipCode(req.getZipCode())
+                .withAddress(req.getAddress()).withRegistrationDate(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         StringBuilder strb = new StringBuilder();
         strb.append(getClass().getSimpleName());
         strb.append(" [");
-        strb.append("ID: ");
-        strb.append(getId());
+        strb.append(super.toString());
         strb.append(", SCHOOL_CLASS: ");
         strb.append(getSchoolClass());
         strb.append("]");
@@ -53,6 +62,54 @@ public class Student extends Person {
 
     public Student withSchoolClass(final SchoolClass schoolClass) {
         this.schoolClass = schoolClass;
+        return this;
+    }
+
+    @Override
+    public Student withId(final Long id) {
+        super.withId(id);
+        return this;
+    }
+
+    @Override
+    public Student withName(final String name) {
+        super.withName(name);
+        return this;
+    }
+
+    @Override
+    public Student withCpf(final String cpf) {
+        super.withCpf(cpf);
+        return this;
+    }
+
+    @Override
+    public Student withCellPhone(final String cellPhone) {
+        super.withCellPhone(cellPhone);
+        return this;
+    }
+
+    @Override
+    public Student withCity(final String city) {
+        super.withCity(city);
+        return this;
+    }
+
+    @Override
+    public Student withZipCode(final String zipCode) {
+        super.withZipCode(zipCode);
+        return this;
+    }
+
+    @Override
+    public Student withAddress(final String address) {
+        super.withAddress(address);
+        return this;
+    }
+
+    @Override
+    public Student withRegistrationDate(final LocalDateTime registrationDate) {
+        super.withRegistrationDate(registrationDate);
         return this;
     }
 }

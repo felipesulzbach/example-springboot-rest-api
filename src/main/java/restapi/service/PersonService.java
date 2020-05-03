@@ -1,6 +1,5 @@
 package restapi.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,18 +48,14 @@ public class PersonService {
     }
 
     public PersonResp create(PersonReq req) throws ServiceException {
-        Person entityCreated = repository.save(Person.create().withName(req.getName()).withCpf(req.getCpf())
-                .withCellPhone(req.getCellPhone()).withCity(req.getCity()).withZipCode(req.getZipCode())
-                .withAddress(req.getAddress()).withRegistrationDate(LocalDateTime.now()));
+        Person entityCreated = repository.save(Person.valueOf(Person.create(), req));
         PersonResp response = PersonRespTrans.create().toTransform(entityCreated);
         return response;
     }
 
     public PersonResp update(Long id, PersonReq req) throws ServiceException {
         Person entity = getPerson(id);
-        Person entityUpdated = repository.save(entity.withName(req.getName()).withCpf(req.getCpf())
-                .withCellPhone(req.getCellPhone()).withCity(req.getCity()).withZipCode(req.getZipCode())
-                .withAddress(req.getAddress()).withRegistrationDate(LocalDateTime.now()));
+        Person entityUpdated = repository.save(Person.valueOf(entity, req));
         PersonResp response = PersonRespTrans.create().toTransform(entityUpdated);
         return response;
     }

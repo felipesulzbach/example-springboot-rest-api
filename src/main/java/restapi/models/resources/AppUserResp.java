@@ -8,6 +8,7 @@ public class AppUserResp {
 
     private Long id;
     private String name;
+    private String password;
     private PersonResp person;
     private ProfileResp profile;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -33,6 +34,14 @@ public class AppUserResp {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public PersonResp getPerson() {
@@ -92,6 +101,8 @@ public class AppUserResp {
         strb.append(getId());
         strb.append(", NAME: ");
         strb.append(getName());
+        strb.append(", PASSWORD: ");
+        strb.append(getPassword());
         strb.append(", PERSON: ");
         strb.append(getPerson());
         strb.append(", PROFILE: ");
@@ -117,6 +128,11 @@ public class AppUserResp {
 
     public AppUserResp withName(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public AppUserResp withPassword(final String password) {
+        this.password = password;
         return this;
     }
 

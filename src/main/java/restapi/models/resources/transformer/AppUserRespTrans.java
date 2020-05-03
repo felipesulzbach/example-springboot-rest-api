@@ -24,7 +24,7 @@ public class AppUserRespTrans implements Transformer<AppUser, AppUserResp> {
             return null;
         }
 
-        return AppUserResp.create().withId(in.getId()).withName(in.getName())
+        return AppUserResp.create().withId(in.getId()).withName(in.getName()).withPassword(in.getPassword())
                 .withProfile(ProfileRespTrans.create().toTransform(in.getProfile()))
                 .withPerson(PersonRespTrans.create().toTransform(in.getPerson())).withStartDate(in.getStartDate())
                 .withEndDate(in.getEndDate()).withRegistrationDate(in.getRegistrationDate());

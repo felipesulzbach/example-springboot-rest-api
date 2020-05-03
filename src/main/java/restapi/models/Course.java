@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import restapi.models.resources.CourseReq;
+
 /**
  * @autor: Felipe Sulzbach
  */
@@ -64,6 +66,11 @@ public class Course implements Serializable {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public static Course valueOf(Course entity, CourseReq req) {
+        return entity.withName(req.getName()).withDescription(req.getDescription())
+                .withRegistrationDate(LocalDateTime.now());
     }
 
     @Override

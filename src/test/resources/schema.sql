@@ -1,4 +1,6 @@
 DROP SCHEMA IF EXISTS fs_auto CASCADE;
+DROP TABLE IF EXISTS public.flyway_schema_history;
+
 CREATE SCHEMA IF NOT EXISTS fs_auto;
 
 ---------- PERSON ----------
@@ -89,7 +91,7 @@ CREATE SEQUENCE fs_auto.app_user_seq START WITH 1 INCREMENT BY 1;
 CREATE TABLE fs_auto.app_user
 (id NUMERIC NOT NULL
 ,name CHARACTER VARYING(255)
-,key CHARACTER VARYING(20)
+,password CHARACTER VARYING(255)
 ,profile_id NUMERIC
 ,person_id NUMERIC
 ,start_date TIMESTAMP

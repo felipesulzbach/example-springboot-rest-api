@@ -199,6 +199,10 @@ public class ExceptionController {
     }
 
     private String getStackTrace(Exception ex) {
+        if (ex instanceof ServiceException) {
+            return null;
+        }
+
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         ex.printStackTrace(pw);

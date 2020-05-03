@@ -1,25 +1,19 @@
 package restapi.models;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import restapi.models.enumeration.EnumAccessPermission;
+import restapi.models.resources.ProfileReq;
 
 /**
  * @autor: Felipe Sulzbach
@@ -44,13 +38,6 @@ public class Profile implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "ACCESS_PERMISSION")
     private EnumAccessPermission accessPermission;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(schema = "FS_AUTO", name = "APP_USER_PROFILE",
-               inverseForeignKey = @ForeignKey(name = "FK_APP_USER_PROFILE"),
-               joinColumns = @JoinColumn(name = "PROFILE_ID"), inverseJoinColumns = @JoinColumn(name = "ID"))
-    @OrderBy("id ASC")
-    private List<AppUser> appUserList;
 
     public Long getId() {
         return id;
@@ -84,12 +71,8 @@ public class Profile implements Serializable {
         this.accessPermission = accessPermission;
     }
 
-    public List<AppUser> getAppUserList() {
-        return appUserList;
-    }
-
-    public void setAppUserList(List<AppUser> appUserList) {
-        this.appUserList = appUserList;
+    public static Profile valueOf(Profile entity, ProfileReq req) {
+        return entity.withName(req.getName()).withCode(req.getCode()).withAccessPermission(req.getAccessPermission());
     }
 
     @Override

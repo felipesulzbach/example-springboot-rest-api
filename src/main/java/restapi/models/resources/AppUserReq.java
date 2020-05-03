@@ -18,9 +18,9 @@ public class AppUserReq {
     @Size(min = 5, max = 20)
     private String name;
     @NotBlank
-    @JsonProperty("key")
+    @JsonProperty("password")
     @Size(min = 6, max = 10)
-    private String key;
+    private String password;
     @JsonProperty("personId")
     private Long personId;
     @NotNull
@@ -38,12 +38,12 @@ public class AppUserReq {
         this.name = name;
     }
 
-    public String getKey() {
-        return key;
+    public String getPassword() {
+        return password;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getPersonId() {
@@ -68,5 +68,53 @@ public class AppUserReq {
 
     public void setExpirationDate(LocalDateTime expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder strb = new StringBuilder();
+        strb.append(getClass().getSimpleName());
+        strb.append(" [");
+        strb.append(", NAME: ");
+        strb.append(getName());
+        strb.append(", PASSWORD: ");
+        strb.append(getPassword());
+        strb.append(", PERSON_ID: ");
+        strb.append(getPersonId());
+        strb.append(", PROFILE_ID: ");
+        strb.append(getProfileId());
+        strb.append(", EXPIRATION_DATE: ");
+        strb.append(getExpirationDate());
+        strb.append("]");
+        return strb.toString();
+    }
+
+    public static synchronized AppUserReq create() {
+        return new AppUserReq();
+    }
+
+    public AppUserReq withName(final String name) {
+        this.name = name;
+        return this;
+    }
+
+    public AppUserReq withPassword(final String password) {
+        this.password = password;
+        return this;
+    }
+
+    public AppUserReq withPersonId(final Long personId) {
+        this.personId = personId;
+        return this;
+    }
+
+    public AppUserReq withProfileId(final Long profileId) {
+        this.profileId = profileId;
+        return this;
+    }
+
+    public AppUserReq withExpirationDate(final LocalDateTime expirationDate) {
+        this.expirationDate = expirationDate;
+        return this;
     }
 }

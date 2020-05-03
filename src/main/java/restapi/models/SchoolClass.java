@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import restapi.models.resources.SchoolClassReq;
+
 /**
  * @autor: Felipe Sulzbach
  */
@@ -82,6 +84,10 @@ public class SchoolClass implements Serializable {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public static SchoolClass valueOf(SchoolClass entity, SchoolClassReq req, Course course) {
+        return entity.withCourse(course).withStartDate(LocalDateTime.now()).withRegistrationDate(LocalDateTime.now());
     }
 
     @Override

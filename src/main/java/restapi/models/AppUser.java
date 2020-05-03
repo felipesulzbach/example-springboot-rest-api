@@ -17,6 +17,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import restapi.models.resources.AppUserReq;
+import restapi.util.Cripto;
+import restapi.util.Cripto.EnumHash;
+import restapi.util.ServiceException;
+
 /**
  * @autor: Felipe Sulzbach
  */
@@ -36,8 +41,8 @@ public class AppUser implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "KEY")
-    private String key;
+    @Column(name = "PASSWORD")
+    private String password;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PERSON_ID", nullable = true, foreignKey = @ForeignKey(name = "FK_APP_USER_PERSON"))
@@ -72,12 +77,12 @@ public class AppUser implements Serializable {
         this.name = name;
     }
 
-    public String getKey() {
-        return key;
+    public String getPassword() {
+        return password;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Person getPerson() {
@@ -120,6 +125,13 @@ public class AppUser implements Serializable {
         this.registrationDate = registrationDate;
     }
 
+    public static AppUser valueOf(AppUser entity, AppUserReq req, Person person, Profile profile)
+            throws ServiceException {
+        return entity.withName(req.getName()).withPassword(Cripto.encript(req.getPassword(), EnumHash.SHA_256))
+                .withPerson(person).withProfile(profile).withStartDate(LocalDateTime.now())
+                .withEndDate(req.getExpirationDate());
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -154,8 +166,8 @@ public class AppUser implements Serializable {
         strb.append(getId());
         strb.append(", NAME: ");
         strb.append(getName());
-        strb.append(", KEY: ");
-        strb.append(getKey());
+        strb.append(", PASSWORD: ");
+        strb.append(getPassword());
         strb.append(", PERSON: ");
         strb.append(getPerson());
         strb.append(", PROFILE: ");
@@ -184,8 +196,8 @@ public class AppUser implements Serializable {
         return this;
     }
 
-    public AppUser withKey(final String key) {
-        this.key = key;
+    public AppUser withPassword(final String password) {
+        this.password = password;
         return this;
     }
 

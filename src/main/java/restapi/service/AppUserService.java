@@ -1,6 +1,5 @@
 package restapi.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,18 +48,15 @@ public class AppUserService {
 
     public AppUserResp create(AppUserReq req) throws ServiceException {
         AppUser entityCreated = repository.save(
-                AppUser.create().withName(req.getName()).withKey(req.getKey()).withPerson(getPerson(req.getPersonId()))
-                        .withProfile(getProfile(req.getProfileId())).withRegistrationDate(LocalDateTime.now())
-                        .withStartDate(LocalDateTime.now()).withEndDate(req.getExpirationDate()));
+                AppUser.valueOf(AppUser.create(), req, getPerson(req.getPersonId()), getProfile(req.getProfileId())));
         AppUserResp response = AppUserRespTrans.create().toTransform(entityCreated);
         return response;
     }
 
     public AppUserResp update(Long id, AppUserReq req) throws ServiceException {
         AppUser entity = getAppUser(id);
-        AppUser entityUpdated = repository.save(entity.withName(req.getName()).withKey(req.getKey())
-                .withPerson(getPerson(req.getPersonId())).withProfile(getProfile(req.getProfileId()))
-                .withStartDate(LocalDateTime.now()).withEndDate(req.getExpirationDate()));
+        AppUser entityUpdated = repository
+                .save(AppUser.valueOf(entity, req, getPerson(req.getPersonId()), getProfile(req.getProfileId())));
         AppUserResp response = AppUserRespTrans.create().toTransform(entityUpdated);
         return response;
     }
