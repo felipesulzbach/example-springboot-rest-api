@@ -4,7 +4,7 @@ Simple example of a REST API with Swagger UI.
 
 ___
 
-## Pré-requisitos
+## Prerequisites
 
 - Eclipse;
 - PostgreSQL;
