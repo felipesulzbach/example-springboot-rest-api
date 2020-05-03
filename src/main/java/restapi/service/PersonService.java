@@ -13,6 +13,7 @@ import restapi.models.resources.PersonReq;
 import restapi.models.resources.PersonResp;
 import restapi.models.resources.transformer.PersonRespTrans;
 import restapi.repository.PersonRepository;
+import restapi.service.businessRules.PersonBr;
 import restapi.util.ServiceException;
 
 /**
@@ -25,6 +26,9 @@ public class PersonService {
 
     @Autowired
     private PersonRepository repository;
+
+    @Autowired
+    private PersonBr br;
 
     public List<PersonResp> getAll() {
         List<Person> entityList = repository.findAll();
@@ -40,14 +44,13 @@ public class PersonService {
 
     public Person getPerson(long id) throws ServiceException {
         Optional<Person> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Person");
+        br.validateEntityExists(entityOpt, id);
         Person entity = entityOpt.get();
-
         return entity;
     }
 
     public PersonResp create(PersonReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         Person entityCreated = repository.save(Person.valueOf(Person.create(), req));
         PersonResp response = PersonRespTrans.create().toTransform(entityCreated);
         return response;
@@ -55,6 +58,7 @@ public class PersonService {
 
     public PersonResp update(Long id, PersonReq req) throws ServiceException {
         Person entity = getPerson(id);
+        br.validateNameExists(req.getName());
         Person entityUpdated = repository.save(Person.valueOf(entity, req));
         PersonResp response = PersonRespTrans.create().toTransform(entityUpdated);
         return response;

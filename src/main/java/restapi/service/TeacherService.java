@@ -14,6 +14,7 @@ import restapi.models.resources.TeacherReq;
 import restapi.models.resources.TeacherResp;
 import restapi.models.resources.transformer.TeacherRespTrans;
 import restapi.repository.TeacherRepository;
+import restapi.service.businessRules.TeacherBr;
 import restapi.util.ServiceException;
 
 /**
@@ -26,6 +27,9 @@ public class TeacherService {
 
     @Autowired
     private TeacherRepository repository;
+
+    @Autowired
+    private TeacherBr br;
 
     @Autowired
     private CourseService CourseService;
@@ -44,14 +48,13 @@ public class TeacherService {
 
     public Teacher getTeacher(long id) throws ServiceException {
         Optional<Teacher> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Teacher");
+        br.validateEntityExists(entityOpt, id);
         Teacher entity = entityOpt.get();
-
         return entity;
     }
 
     public TeacherResp create(TeacherReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         Course course = getCourse(req.getCourseId());
         Teacher entityCreated = repository.save(Teacher.valueOf(Teacher.create(), req, course));
         TeacherResp response = TeacherRespTrans.create().toTransform(entityCreated);
@@ -60,6 +63,7 @@ public class TeacherService {
 
     public TeacherResp update(Long id, TeacherReq req) throws ServiceException {
         Teacher entity = getTeacher(id);
+        br.validateNameExists(req.getName());
         Course course = getCourse(req.getCourseId());
         Teacher entityUpdated = repository.save(Teacher.valueOf(entity, req, course));
         TeacherResp response = TeacherRespTrans.create().toTransform(entityUpdated);
@@ -77,7 +81,6 @@ public class TeacherService {
         if (id != null) {
             entity = CourseService.getCourse(id);
         }
-
         return entity;
     }
 }

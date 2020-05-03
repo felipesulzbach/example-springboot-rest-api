@@ -13,6 +13,7 @@ import restapi.models.resources.CourseReq;
 import restapi.models.resources.CourseResp;
 import restapi.models.resources.transformer.CourseRespTrans;
 import restapi.repository.CourseRepository;
+import restapi.service.businessRules.CourseBr;
 import restapi.util.ServiceException;
 
 /**
@@ -25,6 +26,9 @@ public class CourseService {
 
     @Autowired
     private CourseRepository repository;
+
+    @Autowired
+    private CourseBr br;
 
     public List<CourseResp> getAll() {
         List<Course> entityList = repository.findAll();
@@ -40,14 +44,13 @@ public class CourseService {
 
     public Course getCourse(long id) throws ServiceException {
         Optional<Course> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Course");
+        br.validateEntityExists(entityOpt, id);
         Course entity = entityOpt.get();
-
         return entity;
     }
 
     public CourseResp create(CourseReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         Course entityCreated = repository.save(Course.valueOf(Course.create(), req));
         CourseResp response = CourseRespTrans.create().toTransform(entityCreated);
         return response;
@@ -55,6 +58,7 @@ public class CourseService {
 
     public CourseResp update(Long id, CourseReq req) throws ServiceException {
         Course entity = getCourse(id);
+        br.validateNameExists(req.getName());
         Course entityUpdated = repository.save(Course.valueOf(entity, req));
         CourseResp response = CourseRespTrans.create().toTransform(entityUpdated);
         return response;

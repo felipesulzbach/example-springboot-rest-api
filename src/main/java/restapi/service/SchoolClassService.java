@@ -14,6 +14,7 @@ import restapi.models.resources.SchoolClassReq;
 import restapi.models.resources.SchoolClassResp;
 import restapi.models.resources.transformer.SchoolClassRespTrans;
 import restapi.repository.SchoolClassRepository;
+import restapi.service.businessRules.SchoolClassBr;
 import restapi.util.ServiceException;
 
 /**
@@ -26,6 +27,9 @@ public class SchoolClassService {
 
     @Autowired
     private SchoolClassRepository repository;
+
+    @Autowired
+    private SchoolClassBr br;
 
     @Autowired
     private CourseService courseService;
@@ -44,10 +48,8 @@ public class SchoolClassService {
 
     public SchoolClass getSchoolClass(long id) throws ServiceException {
         Optional<SchoolClass> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Class");
+        br.validateEntityExists(entityOpt, id);
         SchoolClass entity = entityOpt.get();
-
         return entity;
     }
 
@@ -77,7 +79,6 @@ public class SchoolClassService {
         if (id != null) {
             entity = courseService.getCourse(id);
         }
-
         return entity;
     }
 }

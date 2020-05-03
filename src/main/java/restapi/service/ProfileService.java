@@ -13,6 +13,7 @@ import restapi.models.resources.ProfileReq;
 import restapi.models.resources.ProfileResp;
 import restapi.models.resources.transformer.ProfileRespTrans;
 import restapi.repository.ProfileRepository;
+import restapi.service.businessRules.ProfileBr;
 import restapi.util.ServiceException;
 
 /**
@@ -25,6 +26,9 @@ public class ProfileService {
 
     @Autowired
     private ProfileRepository repository;
+
+    @Autowired
+    private ProfileBr br;
 
     public List<ProfileResp> getAll() {
         List<Profile> entityList = repository.findAll();
@@ -40,14 +44,13 @@ public class ProfileService {
 
     public Profile getProfile(long id) throws ServiceException {
         Optional<Profile> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Profile");
+        br.validateEntityExists(entityOpt, id);
         Profile entity = entityOpt.get();
-
         return entity;
     }
 
     public ProfileResp create(ProfileReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         Profile entityCreated = repository.save(Profile.valueOf(Profile.create(), req));
         ProfileResp response = ProfileRespTrans.create().toTransform(entityCreated);
         return response;
@@ -55,6 +58,7 @@ public class ProfileService {
 
     public ProfileResp update(Long id, ProfileReq req) throws ServiceException {
         Profile entity = getProfile(id);
+        br.validateNameExists(req.getName());
         Profile entityUpdated = repository.save(Profile.valueOf(entity, req));
         ProfileResp response = ProfileRespTrans.create().toTransform(entityUpdated);
         return response;

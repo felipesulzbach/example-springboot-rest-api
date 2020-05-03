@@ -14,6 +14,7 @@ import restapi.models.resources.StudentReq;
 import restapi.models.resources.StudentResp;
 import restapi.models.resources.transformer.StudentRespTrans;
 import restapi.repository.StudentRepository;
+import restapi.service.businessRules.StudentBr;
 import restapi.util.ServiceException;
 
 /**
@@ -26,6 +27,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepository repository;
+
+    @Autowired
+    private StudentBr br;
 
     @Autowired
     private SchoolClassService schoolClassService;
@@ -44,14 +48,13 @@ public class StudentService {
 
     public Student getStudent(long id) throws ServiceException {
         Optional<Student> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "Student");
+        br.validateEntityExists(entityOpt, id);
         Student entity = entityOpt.get();
-
         return entity;
     }
 
     public StudentResp create(StudentReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         SchoolClass schoolClass = getSchoolClass(req.getSchoolClassId());
         Student entityCreated = repository.save(Student.valueOf(Student.create(), req, schoolClass));
         StudentResp response = StudentRespTrans.create().toTransform(entityCreated);
@@ -60,6 +63,7 @@ public class StudentService {
 
     public StudentResp update(Long id, StudentReq req) throws ServiceException {
         Student entity = getStudent(id);
+        br.validateNameExists(req.getName());
         SchoolClass schoolClass = getSchoolClass(req.getSchoolClassId());
         Student entityUpdated = repository.save(Student.valueOf(entity, req, schoolClass));
         StudentResp response = StudentRespTrans.create().toTransform(entityUpdated);
@@ -77,7 +81,6 @@ public class StudentService {
         if (id != null) {
             entity = schoolClassService.getSchoolClass(id);
         }
-
         return entity;
     }
 }

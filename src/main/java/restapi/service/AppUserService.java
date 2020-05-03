@@ -15,6 +15,7 @@ import restapi.models.resources.AppUserReq;
 import restapi.models.resources.AppUserResp;
 import restapi.models.resources.transformer.AppUserRespTrans;
 import restapi.repository.AppUserRepository;
+import restapi.service.businessRules.AppUserBr;
 import restapi.util.ServiceException;
 
 /**
@@ -27,6 +28,9 @@ public class AppUserService {
 
     @Autowired
     private AppUserRepository repository;
+
+    @Autowired
+    private AppUserBr br;
 
     @Autowired
     private PersonService personService;
@@ -47,6 +51,7 @@ public class AppUserService {
     }
 
     public AppUserResp create(AppUserReq req) throws ServiceException {
+        br.validateNameExists(req.getName());
         AppUser entityCreated = repository.save(
                 AppUser.valueOf(AppUser.create(), req, getPerson(req.getPersonId()), getProfile(req.getProfileId())));
         AppUserResp response = AppUserRespTrans.create().toTransform(entityCreated);
@@ -55,6 +60,7 @@ public class AppUserService {
 
     public AppUserResp update(Long id, AppUserReq req) throws ServiceException {
         AppUser entity = getAppUser(id);
+        br.validateNameExists(req.getName());
         AppUser entityUpdated = repository
                 .save(AppUser.valueOf(entity, req, getPerson(req.getPersonId()), getProfile(req.getProfileId())));
         AppUserResp response = AppUserRespTrans.create().toTransform(entityUpdated);
@@ -69,10 +75,8 @@ public class AppUserService {
 
     private AppUser getAppUser(long id) throws ServiceException {
         Optional<AppUser> entityOpt = repository.findById(id);
-        if (entityOpt == null || !entityOpt.isPresent())
-            throw ServiceException.get("ENTITY_NOT_FOUND", String.valueOf(id), "User");
+        br.validateEntityExists(entityOpt, id);
         AppUser entity = entityOpt.get();
-
         return entity;
     }
 
@@ -81,7 +85,6 @@ public class AppUserService {
         if (id != null) {
             entity = personService.getPerson(id);
         }
-
         return entity;
     }
 
