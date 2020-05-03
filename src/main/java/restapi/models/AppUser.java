@@ -18,8 +18,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import restapi.models.resources.AppUserReq;
-import restapi.util.Cripto;
-import restapi.util.Cripto.EnumHash;
+import restapi.util.CriptoUtil;
+import restapi.util.CriptoUtil.EnumHash;
 import restapi.util.ServiceException;
 
 /**
@@ -127,7 +127,7 @@ public class AppUser implements Serializable {
 
     public static AppUser valueOf(AppUser entity, AppUserReq req, Person person, Profile profile)
             throws ServiceException {
-        return entity.withName(req.getName()).withPassword(Cripto.encript(req.getPassword(), EnumHash.SHA_256))
+        return entity.withName(req.getName()).withPassword(CriptoUtil.encript(req.getPassword(), EnumHash.SHA_256))
                 .withPerson(person).withProfile(profile).withStartDate(LocalDateTime.now())
                 .withEndDate(req.getExpirationDate());
     }

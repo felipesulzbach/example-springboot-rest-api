@@ -7,9 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Cripto {
+public class CriptoUtil {
 
-    private static Logger LOG = LoggerFactory.getLogger(Cripto.class.getSimpleName());
+    private static Logger LOG = LoggerFactory.getLogger(CriptoUtil.class.getSimpleName());
 
     public static enum EnumHash {
         MD5(
