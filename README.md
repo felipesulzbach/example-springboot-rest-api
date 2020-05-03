@@ -1,33 +1,61 @@
-# Exemplo de uma API REST com Swagger UI
+# API REST
 
-Exemplo simples de uma uma API REST com Swagger UI.
+Simple example of a REST API with Swagger UI.
 
 ___
 
 ## Pré-requisitos
-* Visual Studio Code, Eclipse ou outro;
-* Banco de dados PostgreSQL.
 
-## Sobre o Springboot
+- Eclipse;
+- PostgreSQL;
+- Maven;
+- Postman.
 
-O Springboot é um projeto que faz parte do ecosistema Spring. Ele ajuda na criação de aplicações Standalone. Ele nos oferece uma estrutura com as configurações iniciais, necessárias para iniciar a implementação.
+## About Springboot
 
-Seguem alguns benefícios:
-* permite ter um projeto mais organizado;
-* ajuda com tarefas de infraestrutura;
-* ajuda a cuidar das configurações de infraestrutura do projeto;
-* aumenta a produtividade;
-* facilita a instalação do projeto em produção.
+Springboot is a project that is part of the Spring ecosystem. It helps in creating Standalone applications. It offers us a structure with the initial settings, necessary to start the implementation.
 
-## Informações do projeto
+Here are some benefits:
 
-Nesse projeto de exemplo, a estrutura foi criada a partir do **Springboot Initializr** (https://start.spring.io/), onde foram adicionadas as seguintes dependências:
-* DevTools
-* Web
-* JPA
-* PostgreSQL
+- allows you to have a more organized project;
+- help with infrastructure tasks;
+- helps to take care of the project's infrastructure settings;
+- increases productivity;
+- facilitates the installation of the project in production.
 
-Para documentar os serviços REST, foi utilizada a ferramenta Swagger UI.
+## Project information
 
-Tela do Swagger UI (http://localhost:8001/swagger-ui.html)
-![Tela do Swagger UI](https://github.com/felipesulzbach/exemplo-springboot-rest-swagger/blob/master/img/visao-swagger.png)
+- **Documentation link:** http://localhost:8001/swagger-ui.html
+- **Endpoints domain:** http://localhost:8001/api
+
+The project is using the following dependencies:
+
+- DevTools
+- Web
+- JPA
+- PostgreSQL
+- H2 Database (...for unit test, not yet implemented)
+- Flyway
+- Swagger UI
+
+## Start Application
+
+Remembering that Springboot uses tomcat as a Servelet Container, it will only be necessary to start the application.
+
+### Create database
+
+With PostgreSQL previously installed:
+- open the PgAdmin program (which is part of the installation package);
+- create a new database with the name **springboot_db**;
+- ready, the bank structure will be created by *Flyway*, the moment the application is started.
+
+### Start
+
+- open the `example-springboot-rest-api/src/main/java/ExampleSpringbootRestApiApplication` file;
+- right-click and select `Run As > 2 Java Application`;
+- open *Postman* and import the `example-springboot-rest-api/resources/java.postman_collection.json` file;
+
+## Future goals
+
+- Implement unit tests;
+- Add the *Docker*;
