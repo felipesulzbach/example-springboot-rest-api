@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    container_name: db_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: springboot_db
+    ports:
+        - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-U", "postgres"]
+      timeout: 10s
+      retries: 5
+
+  db-admin:
+    image: dpage/pgadmin4
+    container_name: springboot_rest_api
+    restart: always
+    ports:
+        - 9090:80
+    depends_on:
+        - db
+    environment:
+        PGADMIN_DEFAULT_EMAIL: admin@admin
+        PGADMIN_DEFAULT_PASSWORD: admin
+
+#  flyway:
+#    image: flyway/flyway
+#    container_name: flyway_migration
+#    command: -url=jdbc:postgresql://127.0.0.1:5432/springboot_db -schemas=fs_auto -user=postgres -password=postgres -connectRetries=60 migrate
+#    volumes:
+#      - .:/flyway/sql
+#    depends_on:
+#      - db

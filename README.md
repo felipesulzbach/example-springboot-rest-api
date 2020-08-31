@@ -6,9 +6,9 @@ ___
 
 ## Prerequisites
 
-- Eclipse;
-- PostgreSQL;
+- Eclipse IDE;
 - Maven;
+- Docker;
 - Postman.
 
 ## About Springboot
@@ -25,8 +25,8 @@ Here are some benefits:
 
 ## Project information
 
-- **Documentation link:** http://localhost:8001/swagger-ui.html
-- **Endpoints domain:** http://localhost:8001/api
+- **Documentation link:** `http://localhost:8001/api/swagger-ui.html`
+- **Endpoints domain:** `http://localhost:8001/api`
 
 The project is using the following dependencies:
 
@@ -38,24 +38,42 @@ The project is using the following dependencies:
 - Flyway
 - Swagger UI
 
-## Start Application
+## Up the environments
 
 Remembering that Springboot uses tomcat as a Servelet Container, it will only be necessary to start the application.
 
-### Create database
+### Start Docker
 
-With PostgreSQL previously installed:
-- open the PgAdmin program (which is part of the installation package);
-- create a new database with the name **springboot_db**;
-- ready, the bank structure will be created by *Flyway*, the moment the application is started.
+To create the environment with the database:
+- open the api directory in CMD;
+- execute the command: `docker-compose -f docker-compose.local.yml up --build`;
+- keep the CMD window open;
+- Other commands:
+    - To undo the environment, execute the command: `docker-compose -f docker-compose.local.yml down`;
+    - To delete all images from the docker, run the `mvnw.cmd file`.
 
-### Start
+## Start Aplication on Eclipse IDE
 
 - open the `example-springboot-rest-api/src/main/java/ExampleSpringbootRestApiApplication` file;
 - right-click and select `Run As > 2 Java Application`;
 - open *Postman* and import the `example-springboot-rest-api/resources/java.postman_collection.json` file;
 
+## Access PgAdmin:
+- open your browser end access the link `http://localhost:9090`;
+- enter the access data:
+    - user: `admin@admin`;
+    - password: `admin`;
+- right click on **Servers**, and **Create > Server...**;
+- In the **General** tab inform:
+    - Name: `local`;
+- In the **Connection** tab inform:
+    - Host name/address: `db_postgres`;
+    - Port: `5432`;
+    - Maintenance database: `postgres`;
+    - Username: `postgres`;
+    - Password: `postgres`;
+- Click the **Save** button;
+
 ## Future goals
 
 - Implement unit tests;
-- Add the *Docker*;
