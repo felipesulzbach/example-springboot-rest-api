@@ -56,7 +56,11 @@ To create the environment with the database:
 
 - open the `example-springboot-rest-api/src/main/java/ExampleSpringbootRestApiApplication` file;
 - right-click and select `Run As > 2 Java Application`;
+
+## Execute endpoints in Postman
+
 - open *Postman* and import the `example-springboot-rest-api/resources/java.postman_collection.json` file;
+- just select the endpoints and execute by clicking the **Send** button;
 
 ## Access PgAdmin:
 - open your browser end access the link `http://localhost:9090`;
