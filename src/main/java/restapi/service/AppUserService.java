@@ -14,9 +14,9 @@ import restapi.models.Profile;
 import restapi.models.resources.AppUserReq;
 import restapi.models.resources.AppUserResp;
 import restapi.models.resources.transformer.AppUserRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.AppUserRepository;
 import restapi.service.businessRules.AppUserBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

@@ -13,9 +13,9 @@ import restapi.models.SchoolClass;
 import restapi.models.resources.SchoolClassReq;
 import restapi.models.resources.SchoolClassResp;
 import restapi.models.resources.transformer.SchoolClassRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.SchoolClassRepository;
 import restapi.service.businessRules.SchoolClassBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

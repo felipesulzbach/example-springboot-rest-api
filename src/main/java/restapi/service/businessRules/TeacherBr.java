@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import restapi.models.Teacher;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.TeacherRepository;
-import restapi.util.ServiceException;
 
 @Service
 @Scope(BeanDefinition.SCOPE_SINGLETON)

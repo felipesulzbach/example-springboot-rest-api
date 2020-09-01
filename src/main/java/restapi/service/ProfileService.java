@@ -12,9 +12,9 @@ import restapi.models.Profile;
 import restapi.models.resources.ProfileReq;
 import restapi.models.resources.ProfileResp;
 import restapi.models.resources.transformer.ProfileRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.ProfileRepository;
 import restapi.service.businessRules.ProfileBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

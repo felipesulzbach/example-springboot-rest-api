@@ -1,4 +1,4 @@
-package restapi.controler;
+package restapi.controller;
 
 import static restapi.util.ExceptionUtil.CODE;
 import static restapi.util.ExceptionUtil.DEV_MESSAGE;
@@ -39,8 +39,8 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import restapi.models.resources.ErrorResponse;
+import restapi.models.resources.vo.ServiceException;
 import restapi.util.Message;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

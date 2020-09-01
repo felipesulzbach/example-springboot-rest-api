@@ -13,9 +13,9 @@ import restapi.models.Teacher;
 import restapi.models.resources.TeacherReq;
 import restapi.models.resources.TeacherResp;
 import restapi.models.resources.transformer.TeacherRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.TeacherRepository;
 import restapi.service.businessRules.TeacherBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

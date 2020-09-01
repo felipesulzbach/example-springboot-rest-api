@@ -1,4 +1,4 @@
-package restapi.util;
+package restapi.models.resources.vo;
 
 /**
  * @autor: Felipe Sulzbach

@@ -18,9 +18,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import restapi.models.resources.AppUserReq;
+import restapi.models.resources.vo.ServiceException;
 import restapi.util.CriptoUtil;
 import restapi.util.CriptoUtil.EnumHash;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

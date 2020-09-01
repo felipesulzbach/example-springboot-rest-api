@@ -12,9 +12,9 @@ import restapi.models.Person;
 import restapi.models.resources.PersonReq;
 import restapi.models.resources.PersonResp;
 import restapi.models.resources.transformer.PersonRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.PersonRepository;
 import restapi.service.businessRules.PersonBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

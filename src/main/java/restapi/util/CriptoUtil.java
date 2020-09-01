@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import restapi.models.resources.vo.ServiceException;
+
 public class CriptoUtil {
 
     private static Logger LOG = LoggerFactory.getLogger(CriptoUtil.class.getSimpleName());

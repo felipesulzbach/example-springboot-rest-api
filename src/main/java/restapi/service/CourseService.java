@@ -12,9 +12,9 @@ import restapi.models.Course;
 import restapi.models.resources.CourseReq;
 import restapi.models.resources.CourseResp;
 import restapi.models.resources.transformer.CourseRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.CourseRepository;
 import restapi.service.businessRules.CourseBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach

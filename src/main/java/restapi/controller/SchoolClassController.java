@@ -1,4 +1,4 @@
-package restapi.controler;
+package restapi.controller;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ import io.swagger.annotations.ApiResponses;
 import restapi.models.resources.ErrorResponse;
 import restapi.models.resources.SchoolClassReq;
 import restapi.models.resources.SchoolClassResp;
+import restapi.models.resources.vo.ServiceException;
 import restapi.service.SchoolClassService;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach
@@ -34,7 +34,7 @@ import restapi.util.ServiceException;
 @RestController
 @Validated
 @RequestMapping(value = "/v1")
-public class SchoolClassControler {
+public class SchoolClassController {
 
     @Autowired
     private SchoolClassService service;

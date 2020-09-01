@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import restapi.models.SchoolClass;
-import restapi.util.ServiceException;
+import restapi.models.resources.vo.ServiceException;
 
 @Service
 @Scope(BeanDefinition.SCOPE_SINGLETON)

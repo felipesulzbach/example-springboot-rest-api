@@ -13,9 +13,9 @@ import restapi.models.Student;
 import restapi.models.resources.StudentReq;
 import restapi.models.resources.StudentResp;
 import restapi.models.resources.transformer.StudentRespTrans;
+import restapi.models.resources.vo.ServiceException;
 import restapi.repository.StudentRepository;
 import restapi.service.businessRules.StudentBr;
-import restapi.util.ServiceException;
 
 /**
  * @autor: Felipe Sulzbach
