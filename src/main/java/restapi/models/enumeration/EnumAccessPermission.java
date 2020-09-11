@@ -21,6 +21,10 @@ public enum EnumAccessPermission {
         this.value = value;
     }
 
+    public static EnumAccessPermission getRandom() {
+        return values()[(int) (Math.random() * values().length)];
+    }
+
     public String getName() {
         return name;
     }

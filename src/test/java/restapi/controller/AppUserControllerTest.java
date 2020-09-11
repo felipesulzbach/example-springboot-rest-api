@@ -1,38 +1,59 @@
 package restapi.controller;
 
-import restapi.models.resources.AppUserResp;
-import restapi.service.AppUserService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import restapi.ExampleSpringbootRestApiApplication;
+import restapi.models.resources.AppUserResp;
+import restapi.service.AppUserService;
+import restapi.util.unitTests.dataFake.model.resources.AppUserRespDf;
+
+@SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
+@RunWith(SpringRunner.class)
 public class AppUserControllerTest {
 
     @Mock
-    private AppUserService service;
+    private AppUserService serviceMock;
+
+    @InjectMocks
+    private AppUserController controler;
+
+    @Autowired
+    private AppUserRespDf dataFake;
 
     private List<AppUserResp> list;
 
     @BeforeEach
     void before() {
         list = new ArrayList<>();
-        list.add(AppUserResp.create());
+        list.addAll(dataFake.getDataList(5));
     }
 
     @Test
     @DisplayName("AppUserController > getAll")
     public void getAllTest() {
-        when(service.getAll()).thenReturn(list);
-        assertEquals(list, service.getAll());
-    }
+        try {
+            when(serviceMock.getAll()).thenReturn(list);
 
+            ResponseEntity<List<AppUserResp>> responseList = controler.getAll();
+            assertEquals(responseList.getStatusCodeValue(), 200);
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
 }
