@@ -1,4 +1,4 @@
-package restapi.util.unitTests.dataFake.model;
+package restapi.util.dataFake.model;
 
 import java.time.LocalDateTime;
 
@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 
 import restapi.models.Person;
 import restapi.util.DataFakeUtil;
-import restapi.util.unitTests.dataFake.DataFake;
+import restapi.util.dataFake.DataFake;
 
 @Component
 @Scope("singleton")
 public class PersonDf extends DataFake<Person> {
+
     private static final long serialVersionUID = 1L;
 
     public Person getData() {

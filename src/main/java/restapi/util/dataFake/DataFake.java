@@ -1,13 +1,10 @@
-package restapi.util.unitTests.dataFake;
+package restapi.util.dataFake;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public abstract class DataFake<E> implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package restapi.util.unitTests.dataFake.model.resources;
+package restapi.util.dataFake.model.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import restapi.models.resources.AppUserResp;
 import restapi.models.resources.transformer.AppUserRespTrans;
-import restapi.util.unitTests.dataFake.DataFake;
-import restapi.util.unitTests.dataFake.model.AppUserDf;
+import restapi.util.dataFake.DataFake;
+import restapi.util.dataFake.model.AppUserDf;
 
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
