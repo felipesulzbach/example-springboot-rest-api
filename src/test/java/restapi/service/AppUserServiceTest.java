@@ -23,8 +23,13 @@ import restapi.models.resources.vo.ServiceException;
 import restapi.repository.AppUserRepository;
 import restapi.service.businessRules.AppUserBr;
 import restapi.util.dataFake.model.AppUserDf;
+import restapi.util.dataFake.model.PersonDf;
+import restapi.util.dataFake.model.ProfileDf;
 import restapi.util.dataFake.model.resources.AppUserReqDf;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
 @RunWith(SpringRunner.class)
 @DisplayName("restapi :: service :: AppUserService")
@@ -46,10 +51,16 @@ public class AppUserServiceTest {
     private AppUserService service;
 
     @Autowired
-    private AppUserDf auDf;
+    private AppUserDf entityDf;
 
     @Autowired
     private AppUserReqDf reqDf;
+
+    @Autowired
+    private PersonDf personDf;
+
+    @Autowired
+    private ProfileDf profileDf;
 
     private List<AppUser> list;
     private Optional<AppUser> obj;
@@ -57,8 +68,8 @@ public class AppUserServiceTest {
     @BeforeEach
     void before() {
         list = new ArrayList<>();
-        list.addAll(auDf.getDataList(5));
-        obj = Optional.of(auDf.getData());
+        list.addAll(entityDf.getDataList(5));
+        obj = Optional.of(entityDf.getData());
     }
 
     @Test
@@ -94,7 +105,9 @@ public class AppUserServiceTest {
     @DisplayName("create")
     public void create() {
         try {
-            Mockito.when(repositoryMock.save(Mockito.any(AppUser.class))).thenReturn(auDf.getData());
+            Mockito.when(repositoryMock.save(Mockito.any(AppUser.class))).thenReturn(entityDf.getData());
+            mockGetPerson();
+            mockGetProfile();
 
             AppUserResp response = service.create(reqDf.getData());
 
@@ -109,8 +122,10 @@ public class AppUserServiceTest {
     public void update() {
         try {
             mockGetAppUser();
-            Mockito.when(repositoryMock.save(Mockito.any(AppUser.class))).thenReturn(auDf.getData());
+            Mockito.when(repositoryMock.save(Mockito.any(AppUser.class))).thenReturn(entityDf.getData());
             Mockito.doNothing().when(brMock).validateNameExists(Mockito.anyString());
+            mockGetPerson();
+            mockGetProfile();
 
             Long id = 1L;
             AppUserResp response = service.update(id, reqDf.getData());
@@ -140,5 +155,13 @@ public class AppUserServiceTest {
     private void mockGetAppUser() throws ServiceException {
         Mockito.when(repositoryMock.findById(Mockito.anyLong())).thenReturn(obj);
         Mockito.doNothing().when(brMock).validateEntityExists(Mockito.any(), Mockito.anyLong());
+    }
+
+    private void mockGetPerson() throws ServiceException {
+        Mockito.when(personServiceMock.getPerson(Mockito.anyLong())).thenReturn(personDf.getData());
+    }
+
+    private void mockGetProfile() throws ServiceException {
+        Mockito.when(profileServiceMock.getProfile(Mockito.anyLong())).thenReturn(profileDf.getData());
     }
 }

@@ -2,6 +2,9 @@ package restapi.models.resources;
 
 import java.time.LocalDateTime;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class TeacherResp extends PersonResp {
 
     private CourseResp course;

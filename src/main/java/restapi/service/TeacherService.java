@@ -32,7 +32,7 @@ public class TeacherService {
     private TeacherBr br;
 
     @Autowired
-    private CourseService CourseService;
+    private CourseService courseService;
 
     public List<TeacherResp> getAll() {
         List<Teacher> entityList = repository.findAll();
@@ -79,7 +79,7 @@ public class TeacherService {
     private Course getCourse(final Long id) throws ServiceException {
         Course entity = null;
         if (id != null) {
-            entity = CourseService.getCourse(id);
+            entity = courseService.getCourse(id);
         }
         return entity;
     }

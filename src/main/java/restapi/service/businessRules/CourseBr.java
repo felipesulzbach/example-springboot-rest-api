@@ -11,6 +11,9 @@ import restapi.models.Course;
 import restapi.models.resources.vo.ServiceException;
 import restapi.repository.CourseRepository;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class CourseBr extends BusinessRules<Course> {

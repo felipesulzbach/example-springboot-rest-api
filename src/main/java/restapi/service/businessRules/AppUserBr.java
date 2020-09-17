@@ -11,6 +11,9 @@ import restapi.models.AppUser;
 import restapi.models.resources.vo.ServiceException;
 import restapi.repository.AppUserRepository;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class AppUserBr extends BusinessRules<AppUser> {

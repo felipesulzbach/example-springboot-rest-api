@@ -20,6 +20,9 @@ import restapi.models.resources.vo.ServiceException;
 import restapi.repository.AppUserRepository;
 import restapi.util.dataFake.model.AppUserDf;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
 @RunWith(SpringRunner.class)
 @DisplayName("restapi :: service :: businessRules :: AppUserBr")

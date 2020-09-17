@@ -11,6 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import restapi.ExampleSpringbootRestApiApplication;
 import restapi.util.CriptoUtil.EnumHash;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
 @RunWith(SpringRunner.class)
 @DisplayName("restapi :: util :: CriptoUtil")
@@ -25,7 +28,9 @@ public class CriptoUtilTest {
     public void encript() {
         try {
             String password = "TEST123";
-            String response = util.encript(password, EnumHash.SHA_256);
+            EnumHash hash = EnumHash.SHA_256;
+            String response = util.encript(password, hash);
+
             Assertions.assertNotNull(response);
             Assertions.assertEquals("56A7010456B474AEEE111F3B7336581FB0A99129D426CF51903EFBDFD629F008", response);
         } catch (Exception e) {

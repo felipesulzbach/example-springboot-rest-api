@@ -10,6 +10,9 @@ import restapi.models.resources.transformer.AppUserRespTrans;
 import restapi.util.dataFake.DataFake;
 import restapi.util.dataFake.model.AppUserDf;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class AppUserRespDf extends DataFake<AppUserResp> {

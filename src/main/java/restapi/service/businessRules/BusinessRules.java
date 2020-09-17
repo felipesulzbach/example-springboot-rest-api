@@ -6,6 +6,9 @@ import org.apache.commons.lang.StringUtils;
 
 import restapi.models.resources.vo.ServiceException;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public abstract class BusinessRules<T> {
 
     public void validateEntityExists(Optional<T> entityOpt, Long id) throws ServiceException {

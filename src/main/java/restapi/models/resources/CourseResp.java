@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class CourseResp {
 
     private Long id;

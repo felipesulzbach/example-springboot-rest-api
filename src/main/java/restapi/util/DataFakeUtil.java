@@ -6,6 +6,9 @@ import java.util.Random;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class DataFakeUtil {
 
     public static String getString(int lengthValue, boolean useNumbers) {

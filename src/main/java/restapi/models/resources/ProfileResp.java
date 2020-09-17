@@ -2,6 +2,9 @@ package restapi.models.resources;
 
 import restapi.models.enumeration.EnumAccessPermission;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class ProfileResp {
 
     private Long id;

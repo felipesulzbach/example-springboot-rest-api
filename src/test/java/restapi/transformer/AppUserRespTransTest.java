@@ -19,6 +19,9 @@ import restapi.models.resources.AppUserResp;
 import restapi.models.resources.transformer.AppUserRespTrans;
 import restapi.util.dataFake.model.AppUserDf;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
 @RunWith(SpringRunner.class)
 @DisplayName("restapi :: models :: resources :: transformer :: AppUserRespTrans")
@@ -28,7 +31,7 @@ public class AppUserRespTransTest {
     private AppUserRespTrans trasform;
 
     @Autowired
-    private AppUserDf auDf;
+    private AppUserDf entityDf;
 
     private List<AppUser> list;
     private AppUser obj;
@@ -36,8 +39,8 @@ public class AppUserRespTransTest {
     @BeforeEach
     void before() {
         list = new ArrayList<>();
-        list.addAll(auDf.getDataList(5));
-        obj = auDf.getData();
+        list.addAll(entityDf.getDataList(5));
+        obj = entityDf.getData();
     }
 
     @Test
@@ -46,6 +49,7 @@ public class AppUserRespTransTest {
     public void create() {
         try {
             AppUserRespTrans response = trasform.create();
+
             Assertions.assertNotNull(response);
         } catch (Exception e) {
             Assertions.fail(e);
@@ -57,6 +61,7 @@ public class AppUserRespTransTest {
     public void toTransform() {
         try {
             AppUserResp response = trasform.toTransform(obj);
+
             Assertions.assertNotNull(response);
         } catch (Exception e) {
             Assertions.fail(e);
@@ -68,6 +73,7 @@ public class AppUserRespTransTest {
     public void toTransformList() {
         try {
             List<AppUserResp> responseList = trasform.toTransform(list);
+
             Assertions.assertNotNull(responseList);
             Assertions.assertTrue(!responseList.isEmpty());
         } catch (Exception e) {

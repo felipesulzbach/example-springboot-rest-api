@@ -10,6 +10,9 @@ import restapi.models.resources.AppUserReq;
 import restapi.util.DataFakeUtil;
 import restapi.util.dataFake.DataFake;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class AppUserReqDf extends DataFake<AppUserReq> {

@@ -5,8 +5,9 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import restapi.models.SchoolClass;
-
+/**
+ * @autor: Felipe Sulzbach
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SchoolClassReq {
 
@@ -33,8 +34,8 @@ public class SchoolClassReq {
         return strb.toString();
     }
 
-    public static synchronized SchoolClass create() {
-        return new SchoolClass();
+    public static synchronized SchoolClassReq create() {
+        return new SchoolClassReq();
     }
 
     public SchoolClassReq withCourseId(final Long courseId) {

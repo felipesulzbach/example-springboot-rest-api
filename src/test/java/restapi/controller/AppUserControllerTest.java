@@ -23,6 +23,9 @@ import restapi.service.AppUserService;
 import restapi.util.dataFake.model.resources.AppUserReqDf;
 import restapi.util.dataFake.model.resources.AppUserRespDf;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @SpringBootTest(classes = { ExampleSpringbootRestApiApplication.class })
 @RunWith(SpringRunner.class)
 @DisplayName("restapi :: controller :: AppUserController")

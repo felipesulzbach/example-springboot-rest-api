@@ -11,6 +11,9 @@ import restapi.models.Teacher;
 import restapi.models.resources.vo.ServiceException;
 import restapi.repository.TeacherRepository;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class TeacherBr extends BusinessRules<Teacher> {

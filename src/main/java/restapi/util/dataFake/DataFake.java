@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public abstract class DataFake<E> implements Serializable {
 
     private static final long serialVersionUID = 1L;

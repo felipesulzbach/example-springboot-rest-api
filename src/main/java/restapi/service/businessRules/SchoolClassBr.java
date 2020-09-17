@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import restapi.models.SchoolClass;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class SchoolClassBr extends BusinessRules<SchoolClass> {

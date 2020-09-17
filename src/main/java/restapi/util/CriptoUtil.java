@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import restapi.models.resources.vo.ServiceException;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 public class CriptoUtil {
 
     private static Logger LOG = LoggerFactory.getLogger(CriptoUtil.class.getSimpleName());

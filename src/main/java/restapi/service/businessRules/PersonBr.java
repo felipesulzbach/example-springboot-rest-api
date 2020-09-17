@@ -11,6 +11,9 @@ import restapi.models.Person;
 import restapi.models.resources.vo.ServiceException;
 import restapi.repository.PersonRepository;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class PersonBr extends BusinessRules<Person> {

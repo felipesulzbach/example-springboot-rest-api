@@ -11,6 +11,9 @@ import restapi.models.Profile;
 import restapi.models.resources.vo.ServiceException;
 import restapi.repository.ProfileRepository;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class ProfileBr extends BusinessRules<Profile> {

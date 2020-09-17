@@ -8,6 +8,9 @@ import restapi.models.enumeration.EnumAccessPermission;
 import restapi.util.DataFakeUtil;
 import restapi.util.dataFake.DataFake;
 
+/**
+ * @autor: Felipe Sulzbach
+ */
 @Component
 @Scope("singleton")
 public class ProfileDf extends DataFake<Profile> {

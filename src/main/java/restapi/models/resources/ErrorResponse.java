@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class ErrorResponse {
 
     private HttpStatus status;
-    private String developerMessage;
-    private String userMessage;
+    private String message;
     private String errorCode;
     private String moreInfo;
     private String stackTrace;
@@ -28,10 +27,8 @@ public class ErrorResponse {
         str.append(getClass().getSimpleName());
         str.append("[ STATUS: ");
         str.append(getStatus());
-        str.append(", DEVELOPER_MESSAGE: '");
-        str.append(getDeveloperMessage());
-        str.append("', USER_MESSAGE: '");
-        str.append(getUserMessage());
+        str.append(", MESSAGE: '");
+        str.append(getMessage());
         str.append("', ERROR_CODE: ");
         str.append(getErrorCode());
         str.append(", MORE_INFO: ");
@@ -53,20 +50,12 @@ public class ErrorResponse {
         this.status = status;
     }
 
-    public String getDeveloperMessage() {
-        return developerMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
-    public String getUserMessage() {
-        return userMessage;
-    }
-
-    public void setUserMessage(String userMessage) {
-        this.userMessage = userMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getErrorCode() {
@@ -102,13 +91,8 @@ public class ErrorResponse {
         return this;
     }
 
-    public ErrorResponse withDeveloperMessage(final String developerMessage) {
-        this.developerMessage = developerMessage;
-        return this;
-    }
-
-    public ErrorResponse withUserMessage(final String userMessage) {
-        this.userMessage = userMessage;
+    public ErrorResponse withMessage(final String message) {
+        this.message = message;
         return this;
     }
 
