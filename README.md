@@ -1,6 +1,6 @@
 # API REST
 
-Simple example of a REST API with Swagger UI.
+Example of a REST API with Swagger UI.
 
 ___
 
@@ -10,6 +10,7 @@ ___
 - Maven;
 - Docker;
 - Postman.
+
 
 ## About Springboot
 
@@ -23,6 +24,7 @@ Here are some benefits:
 - increases productivity;
 - facilitates the installation of the project in production.
 
+
 ## Project information
 
 - **Documentation link:** `http://localhost:8001/api/swagger-ui.html`
@@ -34,13 +36,14 @@ The project is using the following dependencies:
 - Web
 - JPA
 - PostgreSQL
-- H2 Database (...for unit test, not yet implemented)
 - Flyway
 - Swagger UI
 
-## Up the environments
+
+### Up the environments
 
 Remembering that Springboot uses tomcat as a Servelet Container, it will only be necessary to start the application.
+
 
 ### Start Docker
 
@@ -52,17 +55,20 @@ To create the environment with the database:
     - To undo the environment, execute the command: `docker-compose -f docker-compose.local.yml down`;
     - To delete all images from the docker, run the `mvnw.cmd file`.
 
-## Start Aplication on Eclipse IDE
+
+### Start Aplication on Eclipse IDE
 
 - open the `example-springboot-rest-api/src/main/java/ExampleSpringbootRestApiApplication` file;
 - right-click and select `Run As > 2 Java Application`;
 
-## Execute endpoints in Postman
+
+### Execute endpoints in Postman
 
 - open *Postman* and import the `example-springboot-rest-api/resources/java.postman_collection.json` file;
 - just select the endpoints and execute by clicking the **Send** button;
 
-## Access PgAdmin:
+
+### Access PgAdmin:
 - open your browser end access the link `http://localhost:9090`;
 - enter the access data:
     - user: `admin@admin`;
@@ -78,6 +84,50 @@ To create the environment with the database:
     - Password: `postgres`;
 - Click the **Save** button;
 
+
+### Application Structure
+
+The endpoints are defined in the Controllers, the logic of each endpoint was implemented in the Services.
+
+The business rules were separated and concentrated in only one class (by context) in order to be reunited and easily located by the developer. The classes are in the package "restapi.service.businessRules", highlighted in blue in the image.
+
+[link image business_rules.png]
+
+
+#### Transformers (Model x Response)
+
+By default, all endpoints use a specific class to return the response. In this example, the name defined in the model was used plus the word *Resp* (short for *Response*).
+To facilitate the transition of data from Model to Response and vice versa, the Transformer solution was implemented. The transformation is done from class to class or from list to list.
+
+[link image trasformer.png]
+
+
+#### Exception errors
+
+The ExceptionController.java class concentrates all exceptions handled in the system. There is a method for each exception caught.
+
+[link image exception.png]
+
+The standard error response is defined in the ErrorResponse.java class.
+
+[link image default_error_response_class.png]
+
+The exception response handled will be as in the image below.
+
+[link image default_error_response.png]
+
+
+#### Unit tests
+
+**TODO**
+
+
+#### Build Phatterns
+
+**TODO**
+
+
 ## Future goals
 
-- Implement unit tests;
+- An example of a Repository using Criteria and native queries for more complex queries;
+- Spring Security OAuth;
