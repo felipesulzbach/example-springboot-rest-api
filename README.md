@@ -127,6 +127,11 @@ The exception response handled will be as in the image below.
 **TODO**
 
 
+#### Swagger UI
+
+**TODO**
+
+
 ## Future goals
 
 - An example of a Repository using Criteria and native queries for more complex queries;
