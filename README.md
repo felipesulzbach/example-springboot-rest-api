@@ -136,4 +136,4 @@ The exception response handled will be as in the image below.
 
 - An example of a Repository using Criteria and native queries for more complex queries;
 - Spring Security OAuth;
-- SSL certificate - to use https.
+- Add SSL certificate - to use https.
