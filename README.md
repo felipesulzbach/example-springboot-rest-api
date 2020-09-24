@@ -91,7 +91,7 @@ The endpoints are defined in the Controllers, the logic of each endpoint was imp
 
 The business rules were separated and concentrated in only one class (by context) in order to be reunited and easily located by the developer. The classes are in the package "restapi.service.businessRules", highlighted in blue in the image.
 
-[link image business_rules.png]
+![](https://raw.githubusercontent.com/felipesulzbach/example-springboot-rest-api/blob/master/resources/img/Application_Structure/business_rules.png)
 
 
 #### Transformers (Model x Response)
@@ -99,22 +99,22 @@ The business rules were separated and concentrated in only one class (by context
 By default, all endpoints use a specific class to return the response. In this example, the name defined in the model was used plus the word *Resp* (short for *Response*).
 To facilitate the transition of data from Model to Response and vice versa, the Transformer solution was implemented. The transformation is done from class to class or from list to list.
 
-[link image trasformer.png]
+![](https://raw.githubusercontent.com/felipesulzbach/example-springboot-rest-api/blob/master/resources/img/Application_Structure/trasformer.png)
 
 
 #### Exception errors
 
 The ExceptionController.java class concentrates all exceptions handled in the system. There is a method for each exception caught.
 
-[link image exception.png]
+![](https://raw.githubusercontent.com/felipesulzbach/example-springboot-rest-api/blob/master/resources/img/Application_Structure/exception.png)
 
 The standard error response is defined in the ErrorResponse.java class.
 
-[link image default_error_response_class.png]
+![](https://raw.githubusercontent.com/felipesulzbach/example-springboot-rest-api/blob/master/resources/img/Application_Structure/default_error_response_class.png)
 
 The exception response handled will be as in the image below.
 
-[link image default_error_response.png]
+![](https://raw.githubusercontent.com/felipesulzbach/example-springboot-rest-api/blob/master/resources/img/Application_Structure/default_error_response.png)
 
 
 #### Unit tests
